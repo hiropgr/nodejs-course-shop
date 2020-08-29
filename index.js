@@ -14,11 +14,15 @@ app.set('view engine', 'hbs');
 
 //ROUTES
 const homeRouter = require('./routes/homeRouter')
+const courseRouter = require('./routes/courseRouter');
+const addRouter = require('./routes/addRouter');
 
 app.use('/', homeRouter);
+app.use('/courses', courseRouter);
+app.use('/add', addRouter);
 
 //DATABASE
-const url = 'mongo "mongodb+srv://hiropgr:TYV4EFGWL2ZHeb7C@cluster0.r71tx.mongodb.net/courses?retryWrites=true&w=majority';
+const url = 'mongodb+srv://hiropgr:TYV4EFGWL2ZHeb7C@cluster0.r71tx.mongodb.net/courses?retryWrites=true&w=majority';
 async function start() {
     try {
         await mongoose.connect(url, {
