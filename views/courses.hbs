@@ -1,0 +1,24 @@
+<h1 class="title">Courses</h1>
+<hr>
+{{#if courses.length}}
+    <div class="card-deck">
+        {{#each courses}}
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{title}}</h5>
+                    <p class="card-text">
+                        <span class="js-price">
+                            {{price}}
+                        </span>
+                    </p>
+                    <a href="/courses/{{_id}}" class="btn btn-primary">More</a>
+                    <a href="/courses/{{_id}}/edit" class="btn btn-warning">Edit</a>
+                    <a href="/courses/{{_id}}/delete" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+{{else}}
+<p>Курсов пока нет</p>
+{{/if}}
