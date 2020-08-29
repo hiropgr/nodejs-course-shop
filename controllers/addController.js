@@ -7,11 +7,10 @@ exports.index = (req, res) => {
 }
 
 exports.add = async function (req, res) {
-    console.log(req.body);
-
     const course = new Course({
         title: req.body.title,
-        price: req.body.price
+        price: req.body.price,
+        imageURL: req.body.imageURL
     });
 
     await course.save();

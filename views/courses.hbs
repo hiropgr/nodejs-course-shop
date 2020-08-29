@@ -1,20 +1,23 @@
 <h1 class="title">Courses</h1>
 <hr>
 {{#if courses.length}}
-    <div class="card-deck">
+    <div class="row row-cols-1 row-cols-md-2">
         {{#each courses}}
-            <div class="card" style="width: 18rem;">
-                <img src="{{imageURL}}" class="card-img-top" alt="{{title}}">
-                <div class="card-body">
-                    <h5 class="card-title">{{title}}</h5>
-                    <p class="card-text">
-                        <span class="js-price">
-                            {{price}}
-                        </span>
-                    </p>
-                    <a href="/courses/{{_id}}" class="btn btn-primary">More</a>
-                    <a href="/courses/{{_id}}/edit" class="btn btn-warning">Edit</a>
-                    <a href="/courses/{{_id}}/delete" class="btn btn-danger">Delete</a>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="{{imageURL}}" class="card-img-top" alt="{{title}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{title}}</h5>
+                        <p class="card-text">
+                            <span class="price">
+                                {{price}}
+                            </span>
+                        </p>
+                        <a href="/courses/{{_id}}" class="btn btn-primary">More</a>
+                        <a href="/courses/{{_id}}/edit" class="btn btn-light">Edit</a>
+                        <div class="spacer"></div>
+                        <a class="btn btn-block btn-dark font-weight-bold mt-3">Add to cart</a>
+                    </div>
                 </div>
             </div>
         {{/each}}
