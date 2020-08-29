@@ -8,6 +8,9 @@ const course = new Schema({
     price: {
         type: Number,
         required: true
+    },
+    imageURL: {
+        type: String
     }
 });
 
