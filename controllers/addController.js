@@ -10,7 +10,8 @@ exports.add = async function (req, res) {
     const course = new Course({
         title: req.body.title,
         price: req.body.price,
-        imageURL: req.body.imageURL
+        imageURL: req.body.imageURL,
+        userId: req.user
     });
 
     await course.save();

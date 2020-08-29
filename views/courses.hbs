@@ -1,7 +1,10 @@
-<h1 class="title">Courses</h1>
+<h1 class="title">
+    Courses |
+    <span style="color: gainsboro"> available: {{courses.length}}</span>
+</h1>
 <hr>
 {{#if courses.length}}
-    <div class="row row-cols-1 row-cols-md-2">
+    <div class="row row-cols-1 row-cols-md-3">
         {{#each courses}}
             <div class="col mb-4">
                 <div class="card">
@@ -9,14 +12,17 @@
                     <div class="card-body">
                         <h5 class="card-title">{{title}}</h5>
                         <p class="card-text">
-                            <span class="price">
+                            <h3 class="price">
                                 {{price}}
-                            </span>
+                            </h3>
                         </p>
                         <a href="/courses/{{_id}}" class="btn btn-primary">More</a>
                         <a href="/courses/{{_id}}/edit" class="btn btn-light">Edit</a>
                         <div class="spacer"></div>
-                        <a class="btn btn-block btn-dark font-weight-bold mt-3">Add to cart</a>
+                        <form action="/cart/add" method="post">
+                            <input type="hidden" name="id" value="{{_id}}">
+                            <button type="submit" class="btn btn-block btn-dark font-weight-bold mt-3">Add to cart</button>
+                        </form>
                     </div>
                 </div>
             </div>
