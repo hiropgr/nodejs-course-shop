@@ -11,6 +11,10 @@ const course = new Schema({
     },
     imageURL: {
         type: String
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
 
