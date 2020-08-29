@@ -1,0 +1,30 @@
+<h1>Cart</h1>
+<div id="cart">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each courses}}
+                <tr>
+                    <td>{{ title }}</td>
+                    <td>{{ price }}</td>
+                    <td>{{ count }}</td>
+                    <td style="max-width: 70px">
+                        <a href="/courses/{{ _id }}" class="btn btn-primary">More</a>
+                        <button class="btn btn-warning cart-course-remove" data-id="{{ _id }}">Delete</button>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <h2>
+        Total cost: <span class="price">{{ price }}</span>
+    </h2>
+</div>
