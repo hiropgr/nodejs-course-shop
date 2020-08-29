@@ -40,6 +40,6 @@ exports.getById = async (req, res) => {
 
 exports.delete = async (req, res) => {
     const id = req.body.id;
-    await Course.remove({ _id: id });
+    await Course.deleteOne({ _id: id });
     res.redirect('/courses');
 }
