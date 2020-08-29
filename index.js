@@ -1,10 +1,12 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }))
+app.use(express.static(path.join(__dirname, 'public')))
 
 //TEMPLATE ENGINE SETUP
 const hbs = exphbs.create({
