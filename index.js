@@ -7,6 +7,7 @@ const homeRouter = require('./routes/homeRouter')
 const courseRouter = require('./routes/courseRouter');
 const addRouter = require('./routes/addRouter');
 const cartRouter = require('./routes/cartRouter');
+const orderRouter = require('./routes/orderRouter');
 
 const User = require('./models/user');
 
@@ -39,6 +40,7 @@ app.use('/', homeRouter);
 app.use('/courses', courseRouter);
 app.use('/add', addRouter);
 app.use('/cart', cartRouter);
+app.use('/orders', orderRouter);
 
 //DATABASE
 const url = 'mongodb+srv://hiropgr:TYV4EFGWL2ZHeb7C@cluster0.r71tx.mongodb.net/courses?retryWrites=true&w=majority';
