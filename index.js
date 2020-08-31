@@ -7,6 +7,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const csurf = require('csurf');
 const flash = require('connect-flash');
 const keys = require('./keys');
+const hbshelpers = require('./utils/hbs-helper');
 
 const homeRouter = require('./routes/homeRouter')
 const courseRouter = require('./routes/courseRouter');
@@ -42,7 +43,8 @@ app.use(userMiddleware);
 //TEMPLATE ENGINE SETUP
 const hbs = exphbs.create({
     defaultLayout: 'main',
-    extname: 'hbs'
+    extname: 'hbs',
+    helpers: hbshelpers
 });
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
