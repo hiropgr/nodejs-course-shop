@@ -4,6 +4,13 @@
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Sign In</h5>
+                    
+                    {{#if error}}
+                        <div class="alert alert-danger py-3" role="alert">
+                            {{ error }}
+                        </div>
+                    {{/if}}
+                    
                     <form action="/auth/login" method="POST" class="form-signin">
                         <div class="form-label-group">
                             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus name="email" autocomplete="email">

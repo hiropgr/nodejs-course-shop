@@ -4,14 +4,16 @@ const bcryptjs = require('bcryptjs');
 exports.loginPage = (req, res) => {
     res.render('auth/login', {
         title: 'Sign in',
-        layout: 'empty'
+        layout: 'empty',
+        error: req.flash('error')
     });
 }
 
 exports.regPage = (req, res) => {
     res.render('auth/reg', {
-        title: 'Sign in',
-        layout: 'empty'
+        title: 'Sign up',
+        layout: 'empty',
+        error: req.flash('error')
     });
 }
 
@@ -30,11 +32,15 @@ exports.login = async (req, res) => {
                     res.redirect('/');
                 });
             } 
-            else 
+            else {
+                req.flash('error', 'Password is wrong')
                 res.redirect('/auth/signin');
+            }
         } 
-        else
+        else {
+            req.flash('error', 'User is not registered')
             res.redirect('/auth/signin');
+        }
     } catch (error) {
         console.log(error);
     }
@@ -51,15 +57,24 @@ exports.register = async (req, res) => {
         const {email, password, confirmPassword, name} = req.body
         const candidate = await User.findOne({ email })
     
-        if(candidate)
-            res.redirect('/auth/signin');
+        if(candidate) {
+            req.flash('error', 'Email is already in use')
+            res.redirect('/auth/signup');
+        }
         else {
-            const hashPassword = await bcryptjs.hash(password, 10)
-            const user = new User({
-                email, password: hashPassword, name
-            });
-            user.save();
-            res.redirect('/auth/signin');
+            if(password === confirmPassword) {
+                const hashPassword = await bcryptjs.hash(password, 10)
+                const user = new User({
+                    email, password: hashPassword, name
+                });
+                user.save();
+                res.redirect('/auth/signip');
+            }
+            else {
+                req.flash('error', 'Passwords are not equal')
+                res.redirect('/auth/signup');
+            }
+
         }
     } catch (error) {
         console.log(error);
