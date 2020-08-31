@@ -13,12 +13,12 @@
 
                     <form action="/auth/register" method="POST" class="form-signin">
                         <div class="form-label-group">
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" autocomplete="email" name="email" required autofocus>
+                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" autocomplete="email" name="email" required autofocus value="{{ data.email }}">
                             <label for="inputEmail">Email address</label>
                         </div>
 
                         <div class="form-label-group">
-                            <input type="text" id="inputName" class="form-control" placeholder="Name" name="name" required autocomplete="name">
+                            <input type="text" id="inputName" class="form-control" placeholder="Name" name="name" required autocomplete="name" value="{{ data.name }}">
                             <label for="inputName">Name</label>
                         </div>
 

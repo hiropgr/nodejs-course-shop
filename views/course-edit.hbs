@@ -1,4 +1,10 @@
-<h1 class="title">Change course: {{course.title}}</h1>
+<h1 class="title">Edit course: {{course.title}}</h1>
+
+{{#if error}}
+    <div class="alert alert-danger py-3" role="alert">
+        {{ error }}
+    </div>
+{{/if}}
 
 <form action="/courses/edit" method="POST">
     <div class="form-group">

@@ -1,4 +1,5 @@
 const Course = require('../models/course');
+const {validationResult} = require('express-validator');
 
 function isOwner(course, req) {
     return course.userId.toString() === req.user._id.toString();
@@ -8,7 +9,7 @@ exports.index = async (req, res) => {
     try {
         const courses = await Course.find({}).lean();
         res.render('courses', {
-            title: 'Курсы',
+            title: 'Courses list',
             courses,
             userId: req.user ? req.user._id.toString() : null
         });
@@ -26,8 +27,9 @@ exports.edit = async (req, res) => {
             return res.redirect('/courses');
     
         res.render('course-edit', {
-            title: 'Редактировать курс',
-            course
+            title: 'Edit course',
+            course,
+            error: req.flash('error')
         });
     } catch (error) {
         console.log(error);
@@ -36,11 +38,18 @@ exports.edit = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
+        const id = req.body.id;
         const course = await Course.findById(id).lean();
+
+        const errors = validationResult(req);
+        if(!errors.isEmpty()) {
+            req.flash('error', errors.array()[0].msg);
+            return res.redirect(`/courses/${id}/edit`);
+        }
+
         if(!isOwner(course, req))
             return res.redirect('/courses');
         
-        const id = req.body.id;
         const updObj = {
             title: req.body.title,
             price: req.body.price,
@@ -58,7 +67,7 @@ exports.getById = async (req, res) => {
         const id = req.params.id;
         const course = await Course.findById(id).lean();
         res.render('course', {
-            title: `Курс ${course.title}`,
+            title: `Course ${course.title}`,
             course
         })
     } catch (error) {
