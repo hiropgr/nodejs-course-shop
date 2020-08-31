@@ -18,6 +18,7 @@ const authRouter = require('./routes/authRouter');
 
 const varMiddleware = require('./middleware/variables');
 const userMiddleware = require('./middleware/user');
+const errorMiddleware = require('./middleware/error');
 
 const app = express();
 
@@ -56,6 +57,8 @@ app.use('/add', addRouter);
 app.use('/cart', cartRouter);
 app.use('/orders', orderRouter);
 app.use('/auth', authRouter);
+
+app.use(errorMiddleware);
 
 //DATABASE
 async function start() {
