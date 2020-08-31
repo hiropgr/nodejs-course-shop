@@ -23,6 +23,7 @@
                             <form action="/cart/add" method="post">
                                 <input type="hidden" name="id" value="{{_id}}">
                                 <button type="submit" class="btn btn-block btn-dark font-weight-bold mt-3">Add to cart</button>
+                                <input type="hidden" name="_csrf" value="{{ @root.csrf }}">
                             </form>
                         {{/if}}
                     </div>

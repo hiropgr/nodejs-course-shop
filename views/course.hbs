@@ -12,6 +12,7 @@
         <form action="/courses/delete" class="mt-3" method="POST">
             <input type="hidden" name="id" value="{{course._id}}">
             <button class="btn btn-danger">Delete</button>
+            <input type="hidden" name="_csrf" value="{{csrf}}">
         </form>
     </div>
     <img src="{{course.imageURL}}" class="card-img-bottom" alt="{{course.title}}">

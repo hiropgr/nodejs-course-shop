@@ -29,8 +29,14 @@ if($cart) {
     $cart.addEventListener('click', async event => {
         if(event.target.classList.contains('cart-course-remove')) {
             const id = event.target.dataset.id;
+            const csrf = event.target.dataset.csrf
 
-            let response = await fetch('/cart/remove/' + id, { method: 'delete'});
+            let response = await fetch('/cart/remove/' + id, { 
+                method: 'delete',
+                headers: {
+                    'X-XSRF-TOKEN': csrf
+                }
+            });
             let cart = await response.json();
             if(cart.items.length) {
                 const html = cart.items.map(c => `

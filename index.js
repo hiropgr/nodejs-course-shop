@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
+const csurf = require('csurf');
 
 const homeRouter = require('./routes/homeRouter')
 const courseRouter = require('./routes/courseRouter');
@@ -32,6 +33,7 @@ app.use(session({
     store
 }));
 
+app.use(csurf());
 app.use(varMiddleware);
 app.use(userMiddleware);
 

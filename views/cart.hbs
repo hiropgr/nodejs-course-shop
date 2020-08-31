@@ -18,7 +18,11 @@
                         <td>{{ count }}</td>
                         <td style="max-width: 70px">
                             <a href="/courses/{{ _id }}" class="btn btn-primary">More</a>
-                            <button class="btn btn-warning cart-course-remove" data-id="{{ _id }}">Delete</button>
+                            <button 
+                                class="btn btn-warning cart-course-remove" 
+                                data-id="{{ _id }}"
+                                data-csrf="{{ @root.csrf }}"
+                            >Delete</button>
                         </td>
                     </tr>
                 {{/each}}
@@ -31,6 +35,7 @@
         <div class="row justify-content-end">
             <form action="/orders" method="post">
                 <button class="btn btn-dark px-5 font-weight-bold">Buy</button>
+                <input type="hidden" name="_csrf" value="{{csrf}}">
             </form>
         </div>
     </div>
