@@ -17,12 +17,14 @@
                             </h3>
                         </p>
                         <a href="/courses/{{_id}}" class="btn btn-primary">More</a>
-                        <a href="/courses/{{_id}}/edit" class="btn btn-light">Edit</a>
-                        <div class="spacer"></div>
-                        <form action="/cart/add" method="post">
-                            <input type="hidden" name="id" value="{{_id}}">
-                            <button type="submit" class="btn btn-block btn-dark font-weight-bold mt-3">Add to cart</button>
-                        </form>
+                        {{#if @root.isAuth}}
+                            <a href="/courses/{{_id}}/edit" class="btn btn-light">Edit</a>
+                            <div class="spacer"></div>
+                            <form action="/cart/add" method="post">
+                                <input type="hidden" name="id" value="{{_id}}">
+                                <button type="submit" class="btn btn-block btn-dark font-weight-bold mt-3">Add to cart</button>
+                            </form>
+                        {{/if}}
                     </div>
                 </div>
             </div>

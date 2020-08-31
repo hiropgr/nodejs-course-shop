@@ -4,22 +4,39 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/courses">Courses</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/add">Add new</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/cart">Cart</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/orders">Orders</a>
-            </li>
+
+            {{#if isAuth}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/add">Add new</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/orders">Orders</a>
+                </li>
+            {{/if}}
+        </ul>
+        <ul class="navbar-nav">
+            {{#if isAuth}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/logout">Logout</a>
+                </li>
+            {{else}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/signin">Sign in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/auth/signup">Sign up</a>
+                </li>
+            {{/if}}
         </ul>
     </div>
 </nav>
