@@ -8,7 +8,7 @@ function isOwner(course, req) {
 exports.index = async (req, res) => {
     try {
         const courses = await Course.find({}).lean();
-        res.render('courses', {
+        res.render('courses/list', {
             title: 'Courses list',
             courses,
             userId: req.user ? req.user._id.toString() : null
@@ -26,7 +26,7 @@ exports.edit = async (req, res) => {
         if(!isOwner(course, req))
             return res.redirect('/courses');
     
-        res.render('course-edit', {
+        res.render('courses/edit', {
             title: 'Edit course',
             course,
             error: req.flash('error')
@@ -67,7 +67,7 @@ exports.getById = async (req, res) => {
         const id = req.params.id;
         const course = await Course.findById(id).lean();
         const userId = req.user ? req.user._id : null;
-        res.render('course', {
+        res.render('courses/view', {
             title: `Course ${course.title}`,
             course,
             userId
