@@ -8,6 +8,7 @@ const csurf = require('csurf');
 const flash = require('connect-flash');
 const keys = require('./keys');
 const hbshelpers = require('./utils/hbs-helper');
+const helmet = require('helmet');
 
 const homeRouter = require('./routes/homeRouter')
 const courseRouter = require('./routes/courseRouter');
@@ -41,6 +42,7 @@ app.use(session({
 
 app.use(csurf());
 app.use(flash());
+app.use(helmet());
 app.use(varMiddleware);
 app.use(userMiddleware);
 app.use(fileMiddleware.single('avatar'));
