@@ -66,9 +66,11 @@ exports.getById = async (req, res) => {
     try {
         const id = req.params.id;
         const course = await Course.findById(id).lean();
+        const userId = req.user ? req.user._id : null;
         res.render('course', {
             title: `Course ${course.title}`,
-            course
+            course,
+            userId
         })
     } catch (error) {
         console.log(error);
