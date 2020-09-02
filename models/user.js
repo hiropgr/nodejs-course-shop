@@ -28,7 +28,8 @@ const userSchema = new Schema({
                 }
             }
         ]
-    }
+    },
+    avatarURL: String
 });
 
 userSchema.methods.addToCart = async function(course) {

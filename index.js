@@ -15,15 +15,18 @@ const addRouter = require('./routes/addRouter');
 const cartRouter = require('./routes/cartRouter');
 const orderRouter = require('./routes/orderRouter');
 const authRouter = require('./routes/authRouter');
+const profileRouter = require('./routes/profileRouter');
 
 const varMiddleware = require('./middleware/variables');
 const userMiddleware = require('./middleware/user');
 const errorMiddleware = require('./middleware/error');
+const fileMiddleware = require('./middleware/file');
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
+app.use('/images', express.static(path.join(__dirname, 'images')))
 
 const store = new MongoDBStore({
     collection: 'sessions',
@@ -40,6 +43,7 @@ app.use(csurf());
 app.use(flash());
 app.use(varMiddleware);
 app.use(userMiddleware);
+app.use(fileMiddleware.single('avatar'));
 
 //TEMPLATE ENGINE SETUP
 const hbs = exphbs.create({
@@ -57,6 +61,7 @@ app.use('/add', addRouter);
 app.use('/cart', cartRouter);
 app.use('/orders', orderRouter);
 app.use('/auth', authRouter);
+app.use('/profile', profileRouter);
 
 app.use(errorMiddleware);
 
